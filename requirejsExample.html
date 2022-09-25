@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <hello-world :msg="msg"/>
+</div>
+
+<script>
+    requirejs.config({
+        paths: {
+            "vue": "https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min",
+            "myLib": "dist/myLib.umd",
+        }
+    });
+
+    require(["vue", "myLib"], (Vue, HelloWorld) => {
+        const app = new Vue({
+            components: {
+                HelloWorld,
+            },
+            el: "#app",
+            data() {
+                return {
+                    msg: "Hello World",
+                };
+            },
+        });
+    });
+</script>
+</body>
+</html>
